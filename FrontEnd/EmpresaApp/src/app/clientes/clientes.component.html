@@ -133,7 +133,7 @@
                           <ng-container matColumnDef="IdDireccion">
                             <th mat-header-cell style="width: 10% !important;" *matHeaderCellDef mat-sort-header>ID
                               Dirección</th>
-                            <td mat-cell style="width: 10% !important;" *matCellDef="let row">{{row.idCliente}}</td>
+                            <td mat-cell style="width: 10% !important;" *matCellDef="let row">{{row.idDireccion}}</td>
                           </ng-container>
 
                           <ng-container matColumnDef="Direccion1">
@@ -177,7 +177,7 @@
                           </ng-container>
 
                           <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
-                          <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+                          <tr mat-row *matRowDef="let row; columns: displayedColumns2;" (click)="llenarDireccionTab(row)"></tr>
                         </table>
 
                       </div>
@@ -244,6 +244,9 @@
                   <button mat-raised-button color="primary" class="mx-2 m-2" (click)="CrearActualizarCliente()">
                     Crear/Actualizar
                   </button>
+                  <button mat-raised-button color="warn" class="mx-2 m-2" (click)="limpiarFormCliente()">
+                    Limpiar
+                  </button>
                 </div>
               </mat-card>
             </div>
@@ -297,6 +300,10 @@
                 <div fxFlex="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" fxLayoutAlign="end center">
                   <button mat-raised-button color="primary" class="mx-2 m-2" (click)="CrearActualizarDireccion()" [disabled]="!flagCrearDireccion">
                     Crear/Actualizar
+                  </button>
+                  &nbsp;
+                  <button mat-raised-button color="warn" class="mx-2 m-2" (click)="limpiarFormDireccion()" [disabled]="!flagCrearDireccion">
+                  Limpiar
                   </button>
                 </div>
               </mat-card>

@@ -23,6 +23,7 @@ export class ClientesComponent implements OnInit {
   public length = 0;
   public length2 = 0;
   public clienteSeleccionado = [];
+  public direccionSeleccionada = [];
   public flagCrearDireccion = false;
 
   public displayedColumns = [
@@ -113,7 +114,6 @@ export class ClientesComponent implements OnInit {
 
     let direcciones = await this.clienteService.obtenerDireccion(row.idCliente);
     this.clienteSeleccionado = await this.clienteService.obtenerCliente(row.idCliente);
-
     this.toastr.info('Puedes editar el cliente en la siguiente tab')
     this.llenarClienteTab(this.clienteSeleccionado);
 
@@ -136,6 +136,23 @@ export class ClientesComponent implements OnInit {
       this.flagCrearDireccion = true;
     }
   }
+
+  llenarDireccionTab(row) {
+
+    console.log(row);
+      this.clientForm.controls.direccion.get('IdDireccion').setValue(row.idDireccion);
+      this.clientForm.controls.direccion.get('direccionPrincipal').setValue(row.direccionPrincipal);
+      this.clientForm.controls.direccion.get('direccionSecundaria').setValue(row.direccionSecundaria);
+      this.clientForm.controls.direccion.get('ciudad').setValue(row.ciudad);
+      this.clientForm.controls.direccion.get('provincia').setValue(row.provincia);
+      this.clientForm.controls.direccion.get('numero').setValue(row.numero);
+      this.clientForm.controls.direccion.get('codigoPostal').setValue(row.codigoPostal);
+      this.clientForm.controls.direccion.get('idCliente').setValue(row.idCliente);
+  
+ 
+ 
+  }
+
   Limpiar() {
     this.dataSource = new MatTableDataSource([]);
     this.dataSource.paginator = this.paginator
@@ -189,5 +206,18 @@ export class ClientesComponent implements OnInit {
     } catch (err) {
       this.toastr.error(err.error.Message)
     }
+  }
+
+  limpiarFormCliente(){
+    this.clientForm.controls.idCliente.setValue('');
+    this.clientForm.controls.nombre.setValue('');
+    this.clientForm.controls.apellido.setValue('');
+    this.clientForm.controls.cedula.setValue('');
+    this.clientForm.controls.telefono.setValue('');
+    this.clientForm.controls.nacionalidad.setValue('');
+    this.clientForm.controls.estadoCivil.setValue('');
+  }
+  limpiarFormDireccion(){
+    this.clientForm.controls.direccion.reset();
   }
 }

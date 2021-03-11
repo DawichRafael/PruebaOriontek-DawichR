@@ -35,7 +35,7 @@ export class ClientesService {
 
   InsertarActualizarDireccion(direccion: any): Promise<any> {
     const body = {
-      idDireccion: direccion.direccion.idDireccion === '' ? null : direccion.idDireccion,
+      idDireccion: direccion.direccion.IdDireccion === '' ? null : direccion.direccion.IdDireccion,
       direccionPrincipal:  direccion.direccion.direccionPrincipal,
       direccionSecundaria:  direccion.direccion.direccionSecundaria,
       ciudad:  direccion.direccion.ciudad,
@@ -50,7 +50,6 @@ export class ClientesService {
   eliminarCliente(idCliente: Number): Promise<any> {
     return this.http.post(`${environment.api}/api/Operation/EliminarCliente?idCliente=${idCliente}`, idCliente).toPromise();
   }
-
 
   eliminarDireccion(idDireccion: Number): Promise<any> {
     return this.http.post(`${environment.api}/api/Operation/EliminarDireccion?idDireccion=${idDireccion}`, idDireccion).toPromise();

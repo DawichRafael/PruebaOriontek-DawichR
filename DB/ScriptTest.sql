@@ -51,4 +51,11 @@ select * from DIRECCION;
 
 
 INSERT INTO DIRECCION
-values ('Calle Juan Erazo #129', 'Frente a la loteria', 'Santo Domingo', 'Distrito Nacional', '809-987-8657','10141', 2)
+values ('Calle Juan Erazo #129', 'Frente a la loteria', 'Santo Domingo', 'Distrito Nacional', '809-987-8657','10141', 10)
+
+
+select * from CLIENTE; 
+
+select *   from DIRECCION
+
+delete from  DIRECCION where idCliente = 9

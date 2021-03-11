@@ -19,7 +19,6 @@ export class ClientesComponent implements OnInit {
   public pageEvent: PageEvent;
   public dataSource: MatTableDataSource<any[]>;
   public dataSource2: MatTableDataSource<any[]>;
-  public loading = false;
   public length = 0;
   public length2 = 0;
   public clienteSeleccionado = [];
@@ -87,6 +86,12 @@ export class ClientesComponent implements OnInit {
 
   async buscarCliente() {
     let clientes = await this.clienteService.obtenerCliente(this.clientForm.controls.idCliente.value);
+
+    if(clientes.length <= 0){
+      this.toastr.info('No hay clientes registrados, favor registrar al menos 1', 'Información', {timeOut: 2000})
+    }else{
+      this.toastr.success('Clientes cargados con Exito!', 'Información', {timeOut: 3000})
+    }
     this.dataSource = new MatTableDataSource(clientes);
     this.dataSource.paginator = this.paginator
     this.dataSource.sort = this.sort;
@@ -125,7 +130,7 @@ export class ClientesComponent implements OnInit {
 
   llenarClienteTab(clienteSeleccionado: any) {
 
-    if (clienteSeleccionado !== null) {
+    if (clienteSeleccionado.length > 0) {
       this.clientForm.controls.idCliente.setValue(clienteSeleccionado[0].idCliente);
       this.clientForm.controls.nombre.setValue(clienteSeleccionado[0].nombre);
       this.clientForm.controls.apellido.setValue(clienteSeleccionado[0].apellido);
@@ -138,19 +143,15 @@ export class ClientesComponent implements OnInit {
   }
 
   llenarDireccionTab(row) {
-
-    console.log(row);
-      this.clientForm.controls.direccion.get('IdDireccion').setValue(row.idDireccion);
-      this.clientForm.controls.direccion.get('direccionPrincipal').setValue(row.direccionPrincipal);
-      this.clientForm.controls.direccion.get('direccionSecundaria').setValue(row.direccionSecundaria);
-      this.clientForm.controls.direccion.get('ciudad').setValue(row.ciudad);
-      this.clientForm.controls.direccion.get('provincia').setValue(row.provincia);
-      this.clientForm.controls.direccion.get('numero').setValue(row.numero);
-      this.clientForm.controls.direccion.get('codigoPostal').setValue(row.codigoPostal);
-      this.clientForm.controls.direccion.get('idCliente').setValue(row.idCliente);
-  
- 
- 
+    this.toastr.info("Puede Editar la dirección en el siguiente TAB");
+    this.clientForm.controls.direccion.get('IdDireccion').setValue(row.idDireccion);
+    this.clientForm.controls.direccion.get('direccionPrincipal').setValue(row.direccionPrincipal);
+    this.clientForm.controls.direccion.get('direccionSecundaria').setValue(row.direccionSecundaria);
+    this.clientForm.controls.direccion.get('ciudad').setValue(row.ciudad);
+    this.clientForm.controls.direccion.get('provincia').setValue(row.provincia);
+    this.clientForm.controls.direccion.get('numero').setValue(row.numero);
+    this.clientForm.controls.direccion.get('codigoPostal').setValue(row.codigoPostal);
+    this.clientForm.controls.direccion.get('idCliente').setValue(row.idCliente);
   }
 
   Limpiar() {
@@ -181,12 +182,12 @@ export class ClientesComponent implements OnInit {
   }
 
   async EliminarDireccion(row) {
-  
+
     try {
       await this.clienteService.eliminarDireccion(row.idDireccion);
 
       this.toastr.success('Ha eliminado esta dirección')
-      this.clienteService.obtenerDireccion(row.idCliente);
+
     } catch (err) {
       this.toastr.error(err.error)
     }
@@ -208,7 +209,7 @@ export class ClientesComponent implements OnInit {
     }
   }
 
-  limpiarFormCliente(){
+  limpiarFormCliente() {
     this.clientForm.controls.idCliente.setValue('');
     this.clientForm.controls.nombre.setValue('');
     this.clientForm.controls.apellido.setValue('');
@@ -216,8 +217,9 @@ export class ClientesComponent implements OnInit {
     this.clientForm.controls.telefono.setValue('');
     this.clientForm.controls.nacionalidad.setValue('');
     this.clientForm.controls.estadoCivil.setValue('');
+    this.flagCrearDireccion = false;
   }
-  limpiarFormDireccion(){
+  limpiarFormDireccion() {
     this.clientForm.controls.direccion.reset();
   }
 }

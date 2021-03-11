@@ -129,6 +129,14 @@ namespace EmpresaWeb.Data
             AuxDelete objetoEliminado = new AuxDelete();
             try
             {
+                int registrosDireccion = _databaseConnection.DIRECCION.Count(x => x.IdCliente == idCliente);
+                if (registrosDireccion > 0)
+                {
+                    var direcciones = _databaseConnection.DIRECCION.Where(x => x.IdCliente == idCliente).ToList();
+
+                    _databaseConnection.DIRECCION.RemoveRange(direcciones);
+                    _databaseConnection.SaveChanges();
+                }
 
                 var registro = _databaseConnection.CLIENTES.Where(x => x.IdCliente == idCliente).FirstOrDefault();
                 _databaseConnection.CLIENTES.Remove(registro);

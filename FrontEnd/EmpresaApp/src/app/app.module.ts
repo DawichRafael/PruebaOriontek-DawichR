@@ -10,10 +10,18 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import {MatFormFieldModule} from '@angular/material/form-field'; 
+import { MatFormFieldModule } from '@angular/material/form-field'; 
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { ToastrModule } from 'ngx-toastr';
+import { HttpClientModule } from '@angular/common/http';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,13 +39,26 @@ import { MatInputModule } from '@angular/material/input';
     FormsModule,
     MatProgressSpinnerModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    ToastrModule.forRoot(),
+    HttpClientModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTabsModule,
+    MatIconModule,
+    MatTooltipModule,
+
     ],
     exports:[
       MatToolbarModule,
       FlexLayoutModule,
       MatCardModule,
       MatInputModule,
+      MatButtonModule,
+      MatIconModule,
+      MatTooltipModule,
     ],
   providers: [],
   bootstrap: [AppComponent]

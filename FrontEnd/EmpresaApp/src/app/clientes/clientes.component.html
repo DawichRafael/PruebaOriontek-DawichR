@@ -1,42 +1,299 @@
- 
 <div class="container">
-<mat-toolbar>
+  <mat-toolbar>
     <span class="titlePage" style="position: absolute; padding-top: 9px;">Empresas App</span>
-</mat-toolbar>
+  </mat-toolbar>
 </div>
 <br>
 <mat-drawer-container class="page-wrapper">
-    <mat-drawer-content>
-      <form [formGroup]="clientForm">
-        <div fxLayout="row wrap" class="p-2">
-          <div fxFlex="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" class="p-2">
-            <mat-card style="padding: 0px !important;">
-              <div fxLayout="row wrap" class="p-2">
-                <div fxFlex="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" fxFlex.xs="100" class="p-2">
-                  <h1 class="layoutTitle">Lista de Clientes</h1>
-                  <mat-card style="padding: 0px !important;">
-                    <div fxLayout="row wrap" class="p-2">
-                      <div fxFlex="25" fxFlex.gt-sm="25" fxFlex.sm="25" class="p-2">
-                        <mat-form-field appearance="outline" class="no-padding">
-                          <mat-label>Número de Factura, Contrato, NCF </mat-label>
-                          <!-- <input matInput autocomplete="off" placeholder="Número de Factura" formControlName="filtroTodos" type="text"> -->
-                        </mat-form-field>
+  <mat-drawer-content>
+    <form [formGroup]="clientForm">
+      <mat-tab-group>
+        <mat-tab label="Consulta Cliente">
+          <div fxLayout="row wrap" class="p-2">
+            <div fxFlex="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" class="p-2">
+              <mat-card style="padding: 0px !important;">
+                <div fxLayout="row wrap" class="p-2">
+                  <div fxFlex="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" fxFlex.xs="100" class="p-2">
+                    <br>
+                    <h1 class="layoutTitle">Lista de Clientes</h1>
+                    <mat-card style="padding: 0px !important;">
+                      <div fxLayout="row wrap" class="p-2">
+                        <div fxFlex="25" fxFlex.gt-sm="25" fxFlex.sm="25" class="p-2">
+                          <mat-form-field appearance="outline" class="no-padding">
+                            <mat-label>Ingrese el ID del Cliente </mat-label>
+                            <input matInput autocomplete="off" placeholder="ID Cliente" formControlName="idCliente"
+                              type="text">
+                          </mat-form-field>
+                        </div>
+                        <div fxFlex="25" fxFlex.gt-sm="25" fxFlex.sm="25" class="p-2">
+                          <button mat-raised-button color="primary" (click)="buscarCliente()">
+                            Buscar
+                          </button>
+                          &nbsp;
+                          <button mat-raised-button color="warn" (click)="Limpiar()">
+                            Limpiar
+                          </button>
+                        </div>
+
                       </div>
-                      <div fxFlex="25" fxFlex.gt-sm="25" fxFlex.sm="25" class="p-2">
-                        <button mat-raised-button color="primary" class="mx-2 m-2"  >
-                          Buscar
-                        </button>
+                    </mat-card>
+                    <mat-card style="padding: 0px !important;">
+                      <div fxLayout="row wrap" class="p-3">
+                        <table mat-table [dataSource]="dataSource" matSort matSortActive="created" matSortDisableClear
+                          matSortDirection="desc">
+                          <ng-container matColumnDef="accion">
+                            <th mat-header-cell *matHeaderCellDef></th>
+                            <td mat-cell *matCellDef="let element; let index = index;">
+      
+                              <button mat-mini-fab class="mr-1" #tooltip="matTooltip" matTooltip="Eliminar"
+                                      style="width: 30px; height: 30px;" matTooltipPosition="above"
+                                      (click)="EliminarCliente(element)" color="warn"  >
+                                <mat-icon class="icon-small">delete</mat-icon>
+                              </button>
+                            </td>
+                          </ng-container>
+                          <ng-container matColumnDef="IdCliente">
+                            <th mat-header-cell style="width: 10% !important;" *matHeaderCellDef mat-sort-header>
+                              Identificación </th>
+                            <td mat-cell style="width: 10% !important;" *matCellDef="let row">{{row.idCliente}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="Nombres">
+                            <th mat-header-cell style="width: 10% !important;" *matHeaderCellDef mat-sort-header>Nombres
+                            </th>
+                            <td mat-cell style="width: 10% !important;" *matCellDef="let row">{{row.nombre}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="Apellidos">
+                            <th mat-header-cell style="width: 10% !important;" *matHeaderCellDef mat-sort-header>
+                              Apellidos</th>
+                            <td mat-cell style="width: 10% !important;" *matCellDef="let row">{{row.apellido}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="Cedula">
+                            <th mat-header-cell style="width: 10% !important;" mat-header-cell *matHeaderCellDef
+                              mat-sort-header>Cédula</th>
+                            <td mat-cell style="width: 10% !important;" mat-cell *matCellDef="let row">{{row.cedula}}
+                            </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="Telefono">
+                            <th mat-header-cell style="width: 10% !important;" mat-header-cell *matHeaderCellDef
+                              mat-sort-header>Telefono</th>
+                            <td mat-cell style="width: 10% !important;" mat-cell *matCellDef="let row">{{row.telefono}}
+                            </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="Nacionalidad">
+                            <th mat-header-cell style="width: 10% !important;" *matHeaderCellDef mat-sort-header>
+                              Nacionalidad </th>
+                            <td mat-cell style="width: 10% !important;" *matCellDef="let row">{{row.nacionalidad}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="EstadoCivil">
+                            <th mat-header-cell style="width: 10% !important;" *matHeaderCellDef mat-sort-header>Estado
+                              Civil</th>
+                            <td mat-cell style="width: 10% !important;" *matCellDef="let row">{{row.estadoCivil}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="Empresa">
+                            <th mat-header-cell style="width: 10% !important;" *matHeaderCellDef mat-sort-header>Empresa
+                            </th>
+                            <td mat-cell style="width: 10% !important;" *matCellDef="let row">{{row.idEmpresa}}</td>
+                          </ng-container>
+
+
+                          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                          <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="buscarDirecciones(row)">
+                          </tr>
+                        </table>
+
                       </div>
-                    </div>
-                  </mat-card>
+                      <mat-paginator #paginator1 [showFirstLastButtons]="true" [length]="length"
+                        [pageSizeOptions]="[5, 10, 25, 50, 75, 100]"></mat-paginator>
+                    </mat-card>
+
+
+                    <mat-card style="padding: 0px !important;">
+                      <h1 class="layoutTitle">Lista de Direcciones</h1>
+                      <div fxLayout="row wrap" class="p-3">
+                        <table mat-table [dataSource]="dataSource2" matSort matSortActive="created" matSortDisableClear
+                          matSortDirection="desc">
+
+                          <ng-container matColumnDef="IdDireccion">
+                            <th mat-header-cell style="width: 10% !important;" *matHeaderCellDef mat-sort-header>ID
+                              Dirección</th>
+                            <td mat-cell style="width: 10% !important;" *matCellDef="let row">{{row.idCliente}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="Direccion1">
+                            <th mat-header-cell style="width: 10% !important;" *matHeaderCellDef mat-sort-header>
+                              Dirección #1</th>
+                            <td mat-cell style="width: 10% !important;" *matCellDef="let row">{{row.direccionPrincipal}}
+                            </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="Direccion2">
+                            <th mat-header-cell style="width: 10% !important;" *matHeaderCellDef mat-sort-header>
+                              Dirección #2</th>
+                            <td mat-cell style="width: 10% !important;" *matCellDef="let row">
+                              {{row.direccionSecundaria}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="Ciudad">
+                            <th mat-header-cell style="width: 10% !important;" mat-header-cell *matHeaderCellDef
+                              mat-sort-header>Ciudad</th>
+                            <td mat-cell style="width: 10% !important;" mat-cell *matCellDef="let row">{{row.ciudad}}
+                            </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="Provincia">
+                            <th mat-header-cell style="width: 10% !important;" mat-header-cell *matHeaderCellDef
+                              mat-sort-header>Provincia</th>
+                            <td mat-cell style="width: 10% !important;" mat-cell *matCellDef="let row">{{row.provincia}}
+                            </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="Numero">
+                            <th mat-header-cell style="width: 10% !important;" *matHeaderCellDef mat-sort-header>
+                              Telefono </th>
+                            <td mat-cell style="width: 10% !important;" *matCellDef="let row">{{row.numero}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="CodigoPostal">
+                            <th mat-header-cell style="width: 10% !important;" *matHeaderCellDef mat-sort-header>Código
+                              Postal</th>
+                            <td mat-cell style="width: 10% !important;" *matCellDef="let row">{{row.codigoPostal}}</td>
+                          </ng-container>
+
+                          <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+                          <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+                        </table>
+
+                      </div>
+                      <mat-paginator #paginator2 [showFirstLastButtons]="true" [length]="length2"
+                        [pageSizeOptions]="[5, 10, 25, 50, 75, 100]"></mat-paginator>
+                    </mat-card>
+                  </div>
+
                 </div>
-                <!-- <div *ngIf="loading" fxLayout="column" fxLayoutAlign="center center" class="user-spinner">
-                  <mat-spinner color="accent"></mat-spinner>
-                </div> -->
-              </div>
-            </mat-card>
+              </mat-card>
+            </div>
           </div>
-        </div>
-      </form>
-    </mat-drawer-content>
-  </mat-drawer-container>
+        </mat-tab>
+        <mat-tab label="Crear/Editar Cliente">
+          <div fxLayout="row wrap" class="p-2">
+            <div fxFlex="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" class="p-2">
+              <h2 class="layoutTitle">Menú Cliente</h2>
+              <mat-card style="padding: 0px !important;">
+                <div fxLayout="row wrap">
+                  &nbsp;
+                  <div fxFlex="100" fxFlex.gt-sm="33" fxFlex.sm="33" class="p-2">
+                    <mat-form-field appearance="outline" class="no-padding">
+                      <mat-label>Nombre</mat-label>
+                      <input matInput autocomplete="off" placeholder="Nombre" formControlName="nombre" type="text">
+                    </mat-form-field>
+                  </div> &nbsp;
+                  <div fxFlex="100" fxFlex.gt-sm="33" fxFlex.sm="33" class="p-2">
+                    <mat-form-field appearance="outline" class="no-padding">
+                      <mat-label>Apellido</mat-label>
+                      <input matInput autocomplete="off" placeholder="Apellido" formControlName="apellido" type="text">
+                    </mat-form-field>
+                  </div> &nbsp;
+                  <div fxFlex="100" fxFlex.gt-sm="33" fxFlex.sm="33" class="p-2">
+                    <mat-form-field appearance="outline" class="no-padding">
+                      <mat-label>Cédula</mat-label>
+                      <input matInput autocomplete="off" placeholder="Cédula" formControlName="cedula" type="text">
+                    </mat-form-field>
+                  </div> &nbsp;
+                  <div fxFlex="100" fxFlex.gt-sm="33" fxFlex.sm="33" class="p-2">
+                    <mat-form-field appearance="outline" class="no-padding">
+                      <mat-label>Telefono</mat-label>
+                      <input matInput autocomplete="off" placeholder="telefono" formControlName="telefono" type="text">
+                    </mat-form-field>
+                  </div> &nbsp;
+                  <div fxFlex="100" fxFlex.gt-sm="33" fxFlex.sm="33" class="p-2">
+                    <mat-form-field appearance="outline" class="no-padding">
+                      <mat-label>Nacionalidad</mat-label>
+                      <input matInput autocomplete="off" placeholder="Nacionalidad" formControlName="nacionalidad"
+                        type="text">
+                    </mat-form-field>
+                  </div> &nbsp;
+                  <div fxFlex="100" fxFlex.gt-sm="33.33" fxFlex.sm="33.33" class="p-2">
+                    <mat-form-field appearance="outline" class="no-padding">
+                      <mat-label>Estado Civil</mat-label>
+                      <input matInput autocomplete="off" placeholder="Estado Civil" formControlName="estadoCivil"
+                        type="text">
+                    </mat-form-field>
+                  </div> &nbsp;
+
+                </div>
+              </mat-card>
+              <mat-card>
+                <div fxFlex="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" fxLayoutAlign="end center">
+                  <button mat-raised-button color="primary" class="mx-2 m-2" (click)="CrearActualizarCliente()">
+                    Crear/Actualizar
+                  </button>
+                </div>
+              </mat-card>
+            </div>
+            <div fxFlex="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" class="p-2" formGroupName="direccion">
+              <h2 class="layoutTitle">Menú Dirección</h2>
+              <mat-card style="padding: 0px !important;">
+                <div fxLayout="row wrap">
+                  &nbsp;
+                  <div fxFlex="100" fxFlex.gt-sm="33" fxFlex.sm="33" class="p-2"  >
+                    <mat-form-field appearance="outline" class="no-padding">
+                      <mat-label>Dirección #1</mat-label>
+                      <input matInput autocomplete="off" placeholder="Nombre" formControlName="direccionPrincipal" type="text">
+                    </mat-form-field>
+                  </div> &nbsp;
+                  <div fxFlex="100" fxFlex.gt-sm="33" fxFlex.sm="33" class="p-2"  >
+                    <mat-form-field appearance="outline" class="no-padding">
+                      <mat-label>Dirección #2</mat-label>
+                      <input matInput autocomplete="off" placeholder="Apellido" formControlName="direccionSecundaria" type="text">
+                    </mat-form-field>
+                  </div> &nbsp;
+                  <div fxFlex="100" fxFlex.gt-sm="33" fxFlex.sm="33" class="p-2"  >
+                    <mat-form-field appearance="outline" class="no-padding">
+                      <mat-label>Ciudad</mat-label>
+                      <input matInput autocomplete="off" placeholder="Ciudad" formControlName="ciudad" type="text">
+                    </mat-form-field>
+                  </div> &nbsp;
+                  <div fxFlex="100" fxFlex.gt-sm="33" fxFlex.sm="33" class="p-2" >
+                    <mat-form-field appearance="outline" class="no-padding">
+                      <mat-label>Provincia</mat-label>
+                      <input matInput autocomplete="off" placeholder="Provincia" formControlName="provincia" type="text">
+                    </mat-form-field>
+                  </div> &nbsp;
+                  <div fxFlex="100" fxFlex.gt-sm="33" fxFlex.sm="33" class="p-2" >
+                    <mat-form-field appearance="outline" class="no-padding">
+                      <mat-label>Telefono</mat-label>
+                      <input matInput autocomplete="off" placeholder="Telefono" formControlName="numero"
+                        type="text">
+                    </mat-form-field>
+                  </div> &nbsp;
+                  <div fxFlex="100" fxFlex.gt-sm="33.33" fxFlex.sm="33.33" class="p-2" >
+                    <mat-form-field appearance="outline" class="no-padding">
+                      <mat-label>Código Postal</mat-label>
+                      <input matInput autocomplete="off" placeholder="Código Postal" formControlName="codigoPostal"
+                        type="text">
+                    </mat-form-field>
+                  </div> &nbsp;
+
+                </div>
+              </mat-card>
+              <mat-card>
+                <div fxFlex="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" fxLayoutAlign="end center">
+                  <button mat-raised-button color="primary" class="mx-2 m-2" (click)="CrearActualizarDireccion()" [disabled]="!flagCrearDireccion">
+                    Crear/Actualizar
+                  </button>
+                </div>
+              </mat-card>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </form>
+  </mat-drawer-content>
+</mat-drawer-container>

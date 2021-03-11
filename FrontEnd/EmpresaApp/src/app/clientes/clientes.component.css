@@ -18,3 +18,37 @@
     display: inline-block;
     width: 80%;
   }
+
+  .mat-header-cell {
+    color: #173F84 !important;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .mat-cell {
+    color: #173F84 !important;
+  }
+  .mat-row:hover {
+    background-color: #94979c !important;
+    color: white !important;
+    cursor: pointer !important;
+   
+  }
+
+  table {
+    width: 100%;
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 20%;
+  }
+
+  .mat-row, .mat-header-row {
+    min-width: 100%;
+    width: 100%;
+  }

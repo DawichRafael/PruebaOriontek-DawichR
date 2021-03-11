@@ -1,4 +1,4 @@
-﻿using EmpresaWeb.Services;
+﻿using EmpresaWeb.Entity.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,9 +11,10 @@ namespace EmpresaWeb.Data.Database
 
         public ConnectionDBClass(DbContextOptions<ConnectionDBClass> options) : base(options)
         {
-
         }
 
         public DbSet<Empresa> EMPRESAS { get; set; }
+        public DbSet<Cliente> CLIENTES { get; set; }
+        public DbSet<Direccion> DIRECCION { get; set; }
     }
 }

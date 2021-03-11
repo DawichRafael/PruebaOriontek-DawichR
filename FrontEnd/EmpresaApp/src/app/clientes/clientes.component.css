@@ -5,9 +5,16 @@
 
 }
 
-span {
-   font-size: xx-large;
+.titlePage {
+    font-size: xx-large;
     text-align: center;
     display: inline-block;
     width: 100%;
+  }
+
+.layoutTitle {
+    font-size: x-large;
+    text-align: center;
+    display: inline-block;
+    width: 80%;
   }

@@ -1,4 +1,4 @@
-﻿using EmpresaWeb.Services.Filters;
+﻿using EmpresaWeb.Entity.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,6 +8,20 @@ namespace EmpresaWeb.Services
 {
     public interface IOperationService
     {
-     Task<Empresa> seleccionarClientes(ClientesFilters filter);
+        #region SELECT
+        Task<IEnumerable<Cliente>> SeleccionarCliente(int? id);
+        Task<IEnumerable<Direccion>> SeleccionarDireccion(int? id);
+        #endregion
+
+        #region INSERT UPDATE
+        Task<Cliente> InsertarActualizarCliente(Cliente fields);
+        Task<Direccion> InsertarActualizarDireccion(Direccion filter);
+        #endregion
+
+        #region DELETE
+        Task<object> EliminarDireccion(int idDireccion);
+        Task<object> EliminarCliente(int idCliente);
+        #endregion
+
     }
 }

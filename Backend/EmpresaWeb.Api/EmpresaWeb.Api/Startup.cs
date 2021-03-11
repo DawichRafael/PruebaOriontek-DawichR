@@ -58,8 +58,6 @@ namespace EmpresaWeb.Api
                     );
             });
 
-          
-            //services.AddScoped<IDatabaseConnection, DatabaseConnection>();
             services.AddScoped<IOperationData, OperationData>();
             services.AddScoped<IOperationService, OperationService>();
         }

@@ -7,6 +7,7 @@ C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backen
 C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\bin\Debug\netcoreapp3.1\EmpresaWeb.Api.runtimeconfig.dev.json
 C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\bin\Debug\netcoreapp3.1\EmpresaWeb.Api.dll
 C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\bin\Debug\netcoreapp3.1\EmpresaWeb.Api.pdb
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\bin\Debug\netcoreapp3.1\EmpresaWeb.Api.xml
 C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\bin\Debug\netcoreapp3.1\Humanizer.dll
 C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\bin\Debug\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
@@ -29,7 +30,11 @@ C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backen
 C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
 C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
 C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
 C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
 C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
@@ -58,6 +63,9 @@ C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backen
 C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\obj\Debug\netcoreapp3.1\EmpresaWeb.Api.csprojAssemblyReference.cache
 C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\obj\Debug\netcoreapp3.1\EmpresaWeb.Api.AssemblyInfoInputs.cache
 C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\obj\Debug\netcoreapp3.1\EmpresaWeb.Api.AssemblyInfo.cs
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\obj\Debug\netcoreapp3.1\EmpresaWeb.Api.csproj.CoreCompileInputs.cache
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\obj\Debug\netcoreapp3.1\EmpresaWeb.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\obj\Debug\netcoreapp3.1\EmpresaWeb.Api.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\obj\Debug\netcoreapp3.1\EmpresaWeb.Api.RazorTargetAssemblyInfo.cache
 C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\obj\Debug\netcoreapp3.1\EmpresaWeb.Api.csproj.CopyComplete
 C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\obj\Debug\netcoreapp3.1\staticwebassets\EmpresaWeb.Api.StaticWebAssets.Manifest.cache
@@ -65,11 +73,3 @@ C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backen
 C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\obj\Debug\netcoreapp3.1\EmpresaWeb.Api.dll
 C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\obj\Debug\netcoreapp3.1\EmpresaWeb.Api.pdb
 C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\obj\Debug\netcoreapp3.1\EmpresaWeb.Api.genruntimeconfig.cache
-C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
-C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
-C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
-C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
-C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\obj\Debug\netcoreapp3.1\EmpresaWeb.Api.csproj.CoreCompileInputs.cache
-C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\obj\Debug\netcoreapp3.1\EmpresaWeb.Api.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\obj\Debug\netcoreapp3.1\EmpresaWeb.Api.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Api\bin\Debug\netcoreapp3.1\EmpresaWeb.Api.xml

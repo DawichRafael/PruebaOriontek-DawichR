@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EmpresaWeb.Services
+namespace EmpresaWeb.Entity.Models
 {
     [Table("EMPRESAS")]
     public class Empresa

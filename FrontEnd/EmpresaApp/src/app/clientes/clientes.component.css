@@ -1,0 +1,13 @@
+.mat-toolbar {
+    background-image: initial;
+    background-color: blue;
+    color: rgb(255, 255, 255);
+
+}
+
+span {
+   font-size: xx-large;
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+  }

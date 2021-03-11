@@ -1,0 +1,475 @@
+ 
+<div class="container">
+<mat-toolbar>
+    <span style="position: absolute; padding-top: 9px;">Empresas App</span>
+</mat-toolbar>
+</div>
+
+<mat-drawer-container class="page-wrapper">
+    <mat-drawer-content>
+      <form name="form" #form="ngForm">
+        <div fxLayout="row wrap" class="p-2">
+          <div fxFlex="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" class="p-2">
+            <h2 class="title p-1">Parámetros</h2>
+            <mat-card style="padding: 0px !important;">
+              <div fxLayout="row wrap" class="p-2">
+                <div fxFlex="25" fxFlex.sm="25" fxFlex.md="25" fxFlex.lg="25" fxFlex.xs="100" class="p-2">
+                  <mat-form-field>
+                    <mat-label>Agrupador</mat-label>
+                    <mat-select (ngModelChange)="interfazAgrupador($event)" [ngModelOptions]="{standalone: true}"
+                      [(ngModel)]="obj.agrupadorSeleccionado">
+                      <mat-option *ngFor="let agrupador of obj.agrupadorOpciones" [value]="agrupador.Codigo">
+                        {{agrupador.Descripcion}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="50" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="50" fxFlex.xs="100" class="p-2">
+                  <mat-form-field>
+                    <mat-label>Interfaz</mat-label>
+                    <mat-select placeholder="Interfaz" (ngModelChange)="codigoInterfazSeleccionada($event)"
+                      [ngModelOptions]="{standalone: true}" [(ngModel)]="codigoInterfaz">
+                      <mat-select-trigger>
+                        {{codigoInterfaz?.Codigo}} - {{codigoInterfaz?.Descripcion}}
+                      </mat-select-trigger>
+                      <mat-option>
+                        <ngx-mat-select-search ngModel name="Interfaz1" (ngModelChange)="formChanged.next($event)"
+                          [placeholderLabel]="''" [noEntriesFoundLabel]="''"></ngx-mat-select-search>
+                      </mat-option>
+                      <mat-option *ngFor="let interfacesR of interfacesFilters" [value]="interfacesR">
+                        {{interfacesR.Codigo}} - {{interfacesR.Descripcion}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" class="p-2"
+                  *ngFor="let item of response; let i = index">
+                  <!-- Tipo OUTPUT TEXT -->
+                  <div fxFlex="50" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="50" class="p-2" fxLayoutAlign="left center"
+                    style="width: 430px; height: 50px; max-width: 100%; margin-left: 10%;"
+                    *ngIf="item.Tipo === 'Text Files'">
+                    <button mat-raised-button style="padding-right:20px; pointer-events: none;" disabled>
+                      Arc. respuesta
+                    </button> &nbsp;&nbsp;
+                    <mat-form-field style="width: 250px !important;">
+                      <input matInput [value]="valorArchivo" disabled />
+                    </mat-form-field>
+                  </div>
+  
+                  <!-- Tipo FILE -->
+                  <div fxFlex="50" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="50" class="p-2" fxLayoutAlign="left center"
+                    style="width: 400px; height: 50px; max-width: 100%; margin-left: 5%;"
+                    *ngIf="(item.Tipo | uppercase ) === 'FILE'">
+                    <button mat-raised-button style="padding-right: 20px; pointer-events: none;"
+                      [disabled]="item.Disabled === 1">Archivo</button>&nbsp;&nbsp;
+                    <input type="file">
+                  </div>
+  
+                  <!-- Tipo FORMAT -->
+                  <div fxFlex="50" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="50" class="p-2" fxLayoutAlign="left center"
+                    style="width: 400px; height: 50px; max-width: 100%; margin-left: 5%;" *ngIf="item.Tipo === 'FORMAT'">
+                    <button mat-raised-button color="warn"
+                      style="max-width: 202px; min-width: 202px; pointer-events: none;">{{item.Etiqueta}}</button>
+                    &nbsp;&nbsp;
+                    <mat-form-field style="width: 250px !important;">
+                      <input matInput [disabled]="item.Disabled === 1" (change)="item.Valor=$event.target.value"
+                        [value]="item.Valor" />
+                    </mat-form-field>
+                  </div>
+  
+                  <!-- Tipo CHECKBOXPICKER-->
+                  <div fxFlex="50" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="50" class="p-2" fxLayoutAlign="left center"
+                    style="width: 400px; height: 50px; max-width: 100%; margin-left: 5%;"
+                    *ngIf="item.Tipo === 'CHECKBOXPICKER'">
+                    <button mat-raised-button color="warn"
+                      style="max-width: 202px; min-width: 202px; pointer-events: none;">{{item.Etiqueta}}</button>
+                    &nbsp;&nbsp;
+                    <mat-radio-group aria-label="Select an option">
+                      <mat-radio-button [value]="valor.Codigo" [checked]="valor.Codigo === item.ValorPorDefecto"
+                        (click)="obtenerCheckValue(valor, i)" *ngFor="let valor of obj.checkboxOpciones[i]; let x = index"
+                        [disabled]="item.Disabled === 1">
+                        {{valor.Descripcion}}&nbsp;&nbsp;&nbsp;</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+  
+                  <!-- Tipo COMBO -->
+                  <div fxFlex="50" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="50" class="p-2" fxLayoutAlign="left center"
+                    style="width: 400px; height: 50px; max-width: 100%; margin-left: 5%;" *ngIf="item.Tipo === 'COMBO'">
+                    <button mat-raised-button color="warn"
+                      style="max-width: 202px; min-width: 202px; pointer-events: none;">{{item.Etiqueta}}</button>
+                    &nbsp;&nbsp;
+                    <mat-form-field style="width: 250px !important;">
+                      <mat-select [placeholder]="item.Disabled === 1 ? '' : 'Seleccione' "
+                        (selectionChange)="SelecionnaCombo($event, i)" [ngModelOptions]="{standalone: true}"
+                        [(ngModel)]="opcionesCombo[i]" [disabled]="item.Disabled === 1">
+                        <mat-option *ngFor="let novedad of obj.comboOpciones[i]" [value]="novedad.Codigo">
+                          {{novedad.Descripcion}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <button class="ml-2" mat-raised-button color="primary" (click)="LimpiarCombo(i)"
+                      *ngIf="item.Disabled === 0">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </div>
+  
+                  <!-- Tipo COMBO SQL -->
+                  <div fxFlex="50" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="50" class="p-2" fxLayoutAlign="left center"
+                    style="width: 550px; height: 50px; max-width: 100%; margin-left: 5%;"
+                    *ngIf="item.Tipo === 'COMBO_SQL'">
+                    <button mat-raised-button color="warn"
+                      style="max-width: 202px; min-width: 202px; pointer-events: none;">
+                      {{item.Etiqueta}}
+                    </button> &nbsp;&nbsp;
+                    <mat-form-field style="width: 250px !important;">
+                      <mat-select [placeholder]="item.Disabled === 1 ? '' : 'Seleccione' "
+                        (selectionChange)="SelecionnaComboSQL($event, i)" [ngModelOptions]="{standalone: true}"
+                        [(ngModel)]="opcionesComboSQL[i]" [disabled]="item.Disabled === 1">
+                        <mat-option>
+                          <ngx-mat-select-search [(ngModel)]="comboSqlSearchValue[i]" name="comboSQL1"
+                            (ngModelChange)="onKey(item, i)" [placeholderLabel]="''" [noEntriesFoundLabel]="''">
+                          </ngx-mat-select-search>
+                        </mat-option>
+                        <mat-option *ngFor="let comboSQL of item.ClasesCombo; " [value]="comboSQL.Codigo">
+                          {{comboSQL?.Descripcion}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+  
+                    <button class="ml-2" mat-raised-button color="primary" (click)="LimpiarComboSql(i)"
+                      *ngIf="item.Disabled === 0">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </div>
+  
+                  <!-- Tipo DATE -->
+                  <div fxFlex="50" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="50" class="p-2" fxLayoutAlign="left center"
+                    style="width: 400px; height: 50px; max-width: 100%; margin-left: 5%;"
+                    *ngIf="(item.Tipo | uppercase ) === 'DATE' ">
+                    <button mat-raised-button color="warn"
+                      style="max-width: 202px; min-width: 202px; pointer-events: none;">
+                      {{item.Etiqueta}}
+                    </button> &nbsp;&nbsp;
+                    <mat-form-field style="width: 250px !important;">
+                      <mat-label>Fecha</mat-label>
+                      <input matInput [matDatepicker]="picker" [ngModelOptions]="{standalone: true}"
+                        [(ngModel)]="opcionesFecha[i]" (ngModelChange)="cambioFecha($event, i)"
+                        #resultPickerModel="ngModel" [disabled]="item.Disabled === 1" />
+                      <mat-datepicker-toggle matSuffix [for]="picker">
+                      </mat-datepicker-toggle>
+                      <mat-datepicker #picker startView="year"></mat-datepicker>
+                    </mat-form-field>
+                    <mat-error *ngIf="resultPickerModel.hasError('matDatepickerParse')">
+  
+                      Esto no es una fecha válida.
+                    </mat-error>
+                  </div>
+  
+                  <!-- Tipo Number -->
+                  <div fxFlex="50" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="50" class="p-2" fxLayoutAlign="left center"
+                    style="width: 400px; height: 50px; max-width: 100%; margin-left: 5%;"
+                    *ngIf="(item.Tipo | uppercase ) === 'NUMBER'">
+                    <button mat-raised-button color="warn"
+                      style="max-width: 202px; min-width: 202px; pointer-events: none;">
+                      {{item.Etiqueta}}
+                    </button> &nbsp;&nbsp;
+                    <mat-form-field style="width: 250px !important;">
+                      <input type="number" matInput [disabled]="item.Disabled === 1"
+                        (change)="item.Valor=$event.target.value" [value]="item.Valor" />
+                    </mat-form-field>
+                  </div>
+  
+                  <!-- Tipo Text -->
+                  <div fxFlex="50" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="50" class="p-2" fxLayoutAlign="left center"
+                    style="width: 400px; height: 50px; max-width: 100%; margin-left: 5%;"
+                    *ngIf="(item.Tipo | uppercase ) === 'TEXT'">
+                    <button mat-raised-button color="warn"
+                      style="max-width: 202px; min-width: 202px; pointer-events: none;">
+                      {{item.Etiqueta}}
+                    </button> &nbsp;&nbsp;
+                    <mat-form-field style="width: 250px !important;">
+                      <input type="text" matInput [disabled]="item.Disabled === 1"
+                        (change)="item.Valor=$event.target.value" [value]="item.Valor" />
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div fxFlex="33.3" fxFlex.sm="33.3" fxFlex.md="33.3" fxFlex.lg="33.3" fxFlex.xs="100" class="p-2">
+                  <button mat-raised-button color="primary" style="margin-left: 3%;"
+                    (click)="ejecutarInterfazEvento($event)" [disabled]="loading || ejecutarAction">Ejecutar</button>
+                </div>
+                <div *ngIf="loading" fxLayout="column" fxLayoutAlign="center center" class="user-spinner">
+                  <mat-spinner color="accent"></mat-spinner>
+                </div>
+              </div>
+            </mat-card>
+          </div>
+          <div fxFlex="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" class="p-2">
+            <h2 class="title p-1">Resultado</h2>
+            <mat-card style="margin: 0px !important; padding: 0px !important;">
+              <div fxLayout="row wrap" class="p-2">
+                <div fxFlex="25" fxFlex.sm="25" fxFlex.md="25" fxFlex.lg="25" class="p-2">
+                  <mat-form-field>
+                    <mat-select (ngModelChange)="codigoEstadoSeleccionado($event)" placeholder="Estado"
+                      [ngModelOptions]="{standalone: true}" [(ngModel)]="codigoEstado">
+                      <mat-option style="width: 100%;" *ngFor="let estado of obj.estadoOpciones" [value]="estado.Codigo">
+                        {{estado.Descripcion}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div fxFlex="25" fxFlex.sm="25" fxFlex.md="25" fxFlex.lg="25" class="p-2">
+                  <button mat-raised-button color="primary" style="margin-left: 3%;" (click)="ejecutarResultadoBusqueda()"
+                    [disabled]="loading || !codigoInterfaz?.Codigo">Buscar</button>
+                </div>
+                <div fxFlex="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" class="p-2">
+                  <mat-tab-group>
+                    <mat-tab label="Interfaz">
+                      <div class="pt-3">
+                        <div class="mat-elevation-z8">
+                          <table mat-table [dataSource]="dataSource2" matSort>
+  
+                            <ng-container matColumnDef="Lote">
+                              <th mat-header-cell style="width: 10% !important;" *matHeaderCellDef mat-sort-header> Lote
+                              </th>
+                              <td mat-cell style="width: 10% !important;" *matCellDef="let row"> {{row.C1.valor}} </td>
+                            </ng-container>
+  
+                            <ng-container matColumnDef="Archivo">
+                              <th mat-header-cell style="width: 20% !important;" *matHeaderCellDef mat-sort-header>
+                                Archivo </th>
+                              <td mat-cell style="width: 20% !important;" *matCellDef="let row"> {{row.C2.valor}} </td>
+                            </ng-container>
+  
+                            <ng-container matColumnDef="Estado">
+                              <th mat-header-cell style="width: 10% !important;" *matHeaderCellDef mat-sort-header> Estado
+                              </th>
+                              <td mat-cell style="width: 10% !important;" *matCellDef="let row"> {{row.C4.valor}} </td>
+                            </ng-container>
+  
+                            <ng-container matColumnDef="Fecha">
+                              <th mat-header-cell style="width: 15% !important;" *matHeaderCellDef mat-sort-header> Fecha
+                              </th>
+                              <td mat-cell style="width: 15% !important;" *matCellDef="let row"> {{row.C5.valor}} </td>
+                            </ng-container>
+  
+                            <ng-container matColumnDef="Secuencia">
+                              <th mat-header-cell style="width: 10% !important;" *matHeaderCellDef mat-sort-header>
+                                Secuencia </th>
+                              <td mat-cell style="width: 10% !important;" *matCellDef="let row"> {{row.C0.valor}} </td>
+                            </ng-container>
+  
+                            <ng-container matColumnDef="Usuario">
+                              <th mat-header-cell style="width: 35% !important;" *matHeaderCellDef mat-sort-header>
+                                Usuario </th>
+                              <td mat-cell style="width: 35% !important;" *matCellDef="let row"> {{row.C10.valor}}
+                                ({{row.C9.valor}}) </td>
+                            </ng-container>
+  
+                            <tr mat-header-row *matHeaderRowDef="resultadoColumnsDipslay"></tr>
+                            <tr mat-row *matRowDef="let row; let i = index;  columns: resultadoColumnsDipslay;"
+                              (click)="llamarHistorico(row)"></tr>
+  
+                          </table>
+  
+                          <mat-paginator #paginator2 [showFirstLastButtons]="true" [length]="length2" [pageSize]="5"
+                            [pageSizeOptions]="[5, 10, 25, 50, 75, 100]" (page)="pageEvent = $event"></mat-paginator>
+                        </div>
+                      </div>
+                    </mat-tab>
+                  </mat-tab-group>
+                </div>
+                <div fxFlex="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" class="p-2">
+                  <mat-tab-group>
+                    <mat-tab label="Bitácora">
+                      <div class="pt-3">
+                        <div class="mat-elevation-z8">
+                          <table mat-table [dataSource]="dataSource" matSort>
+  
+                            <ng-container matColumnDef="IdEjecucion">
+                              <th mat-header-cell style="width: 10% !important;" *matHeaderCellDef mat-sort-header>
+                                {{bitacoraColumnsDipslay[0]}} </th>
+                              <td mat-cell style="width: 10% !important;" *matCellDef="let row"> {{row.C1.valor}} </td>
+                            </ng-container>
+  
+                            <ng-container matColumnDef="Id">
+                              <th mat-header-cell style="width: 10% !important;" *matHeaderCellDef mat-sort-header>
+                                {{bitacoraColumnsDipslay[1]}} </th>
+                              <td mat-cell style="width: 10% !important;" *matCellDef="let row"> {{row.C0.valor}} </td>
+                            </ng-container>
+  
+                            <ng-container matColumnDef="DescripcionEstadoCarga">
+                              <th mat-header-cell style="width: 10% !important;" *matHeaderCellDef mat-sort-header>
+                                {{bitacoraColumnsDipslay[2]}}</th>
+                              <td mat-cell style="width: 10% !important;" *matCellDef="let row"> {{row.C3.valor}} </td>
+                            </ng-container>
+  
+                            <ng-container matColumnDef="DescripcionEstado">
+                              <th mat-header-cell style="width: 10% !important;" *matHeaderCellDef mat-sort-header>
+                                {{bitacoraColumnsDipslay[3]}} </th>
+                              <td mat-cell style="width: 10% !important;" *matCellDef="let row"> {{row.C5.valor}} </td>
+                            </ng-container>
+  
+                            <ng-container matColumnDef="Fecha">
+                              <th mat-header-cell style="width: 10% !important;" *matHeaderCellDef mat-sort-header>
+                                {{bitacoraColumnsDipslay[4]}} </th>
+                              <td mat-cell style="width: 10% !important;" *matCellDef="let row"> {{row.C6.valor}} </td>
+                            </ng-container>
+  
+                            <ng-container matColumnDef="CodigoUsuario">
+                              <th mat-header-cell style="width: 30% !important;" *matHeaderCellDef mat-sort-header>
+                                {{bitacoraColumnsDipslay[5]}} </th>
+                              <td mat-cell style="width: 30% !important;" *matCellDef="let row"> {{row.C9.valor}}
+                                ({{row.C8.valor}}) </td>
+                            </ng-container>
+  
+                            <tr mat-header-row
+                              *matHeaderRowDef="['IdEjecucion',	'Id',	'DescripcionEstadoCarga',	'DescripcionEstado',	'Fecha',	'CodigoUsuario']">
+                            </tr>
+                            <tr mat-row
+                              *matRowDef="let row; let i = index; columns: ['IdEjecucion',	'Id',	'DescripcionEstadoCarga',	'DescripcionEstado',	'Fecha',	'CodigoUsuario'];"
+                              (click)="llamarHistoricoErrores(i)"></tr>
+                          </table>
+  
+                          <mat-paginator #paginator2 [showFirstLastButtons]="true" [length]="length" [pageSize]="5"
+                            [pageSizeOptions]="[5, 10, 25, 50, 75, 100]" (page)="pageEvent = $event"></mat-paginator>
+                        </div>
+                      </div>
+                    </mat-tab>
+                    <mat-tab label="Errores">
+                      <div class="pt-3">
+                        <div class="mat-elevation-z8">
+                          <table mat-table [dataSource]="dataSource3" matSort>
+  
+                            <ng-container matColumnDef="select">
+                              <th mat-header-cell *matHeaderCellDef>
+                              </th>
+                              <td mat-cell *matCellDef="let row; let i = index">
+                                <mat-checkbox (click)="EscogerCodigoError(i)" [checked]="selected === i"
+                                  (change)="selected = i"></mat-checkbox>
+                              </td>
+                            </ng-container>
+  
+                            <ng-container matColumnDef="CodigoError">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{errorColumnsDisplay[0]}} </th>
+                              <td mat-cell *matCellDef="let row"> {{row.C0.valor}} </td>
+                            </ng-container>
+  
+                            <ng-container matColumnDef="DescripcionError">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{errorColumnsDisplay[1]}} </th>
+                              <td mat-cell *matCellDef="let row"> {{row.C1.valor}} </td>
+                            </ng-container>
+  
+                            <ng-container matColumnDef="Cantidad">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{errorColumnsDisplay[2]}} </th>
+                              <td mat-cell *matCellDef="let row"> {{row.C2.valor}} </td>
+                            </ng-container>
+  
+                            <ng-container matColumnDef="Nota" *ngIf="existeNota">
+                              <th mat-header-cell *matHeaderCellDef mat-sort-header> Nota </th>
+                              <td mat-cell *matCellDef="let row"> {{row.C3.valor}} </td>
+                            </ng-container>
+  
+                            <tr mat-header-row
+                              *matHeaderRowDef="(existeNota) ? [ 'select', 'CodigoError',	'DescripcionError',	'Cantidad', 'Nota'] : [ 'select', 'CodigoError',	'DescripcionError',	'Cantidad']">
+                            </tr>
+                            <tr mat-row
+                              *matRowDef="let row; let i = index; columns: (existeNota) ? [ 'select', 'CodigoError',	'DescripcionError',	'Cantidad', 'Nota'] : [ 'select', 'CodigoError',	'DescripcionError',	'Cantidad']"
+                              (click)="selection2.toggle(row)"></tr>
+                          </table>
+  
+                          <mat-paginator #paginator3 [showFirstLastButtons]="true" [length]="length3" [pageSize]="5"
+                            [pageSizeOptions]="[5, 10, 25, 50, 75, 100]" (page)="pageEvent = $event"></mat-paginator>
+                        </div>
+                      </div>
+                    </mat-tab>
+                  </mat-tab-group>
+                </div>
+                <div *ngIf="loading" fxLayout="column" fxLayoutAlign="center center" class="user-spinner">
+                  <mat-spinner color="accent"></mat-spinner>
+                </div>
+              </div>
+            </mat-card>
+          </div>
+          <div fxFlex="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" class="p-2">
+            <h2 class="title p-1">Consulta</h2>
+            <mat-card style="margin: 0px !important; padding: 0px !important;">
+              <div fxLayout="row wrap" class="p-2">
+                <div fxFlex="33.3" fxFlex.sm="33.3" fxFlex.md="33.3" fxFlex.lg="33.3" class="p-2">
+                  <mat-form-field>
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar"
+                      [(ngModel)]="searchValueFilter" [ngModelOptions]="{standalone: true}" />
+                  </mat-form-field>
+                </div>
+                <div fxFlex="33.3" fxFlex.sm="33.3" fxFlex.md="33.3" fxFlex.lg="33.3" class="p-2">
+                  <button mat-raised-button color="primary" (click)="llamarResultadoHistorico()"
+                    [disabled]="loading">Buscar</button>
+                </div>
+                <div fxFlex="33.33" fxFlex.sm="33.33" fxFlex.md="33.33" fxFlex.lg="33.33" class="p-2"
+                  fxLayoutAlign="end center">
+                  <button mat-raised-button class="mr-2" color="primary" (click)="reprocesar()"
+                    *ngIf="obj.agrupadorSeleccionado !== 'B'" [disabled]="!reprocesoList.length">Reprocesar</button>
+                  <button mat-raised-button class="mr-2" color="primary" (click)="imprimir()"
+                    *ngIf="objBitacora.CodigoError === '3802'"
+                    [disabled]="cabeceraErrores.length === 0 || loading">Imprimir</button>
+                  <button mat-raised-button class="mr-2" color="primary" (click)="enviar()"
+                    [disabled]="cabeceraErrores.length === 0 || loading">Enviar</button>
+                </div>
+                <div fxFlex="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" class="p-2">
+                  <div class="mat-elevation-z8">
+                    <button mat-icon-button [matMenuTriggerFor]="menu" style="float: right" aria-label="export type"
+                      matTooltip="Export data" *ngIf="cabeceraErrores.length">
+                      <mat-icon>get_app</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu" style="float: right;">
+                      <button mat-menu-item (click)="descargarXML()">XML</button>
+                      <button mat-menu-item (click)="exporter.exportTable('csv')">CSV</button>
+                      <button mat-menu-item (click)="exporter.exportTable('txt')">TXT</button>
+                      <button mat-menu-item (click)="exporter.exportTable('xls')">XLS</button>
+                      <button mat-menu-item (click)="downloadDetailsData('csv')">Todo (CSV)</button>
+                      <button mat-menu-item (click)="downloadDetailsData('xlsx')">Todo (XLS)</button>
+                    </mat-menu>
+                    <div style="overflow-x: auto;" class="style-1">
+                      <table mat-table matTableExporter [dataSource]="dataSource4" #exporter="matTableExporter"
+                        [hiddenColumns]="[deleteColumnFiles]" matSort style="width: 2800px;">
+                        <ng-container *ngFor="let col of cabeceraErrores; let index = index;" [matColumnDef]="col">
+                          <template *ngIf="index === 0 && col === 'select'">
+                            <th mat-header-cell *matHeaderCellDef>
+                              <mat-checkbox (change)="$event ? masterToggle() : null"
+                                [checked]="selection.hasValue() && isAllSelected()"
+                                [indeterminate]="selection.hasValue() && !isAllSelected()">
+                              </mat-checkbox>
+                            </th>
+                            <td mat-cell *matCellDef="let row">
+                              <mat-checkbox (click)="$event.stopPropagation()"
+                                (change)="$event ? selection.toggle(row) : null; seleccionarFila(selection.selected);"
+                                [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel()">
+                              </mat-checkbox>
+                            </td>
+                          </template>
+                          <template *ngIf="col !== 'select'">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{titulos[index]}} </th>
+                            <td mat-cell *matCellDef="let row"> {{row['valor' + (index)]}} </td>
+                          </template>
+                        </ng-container>
+  
+                        <tr mat-header-row *matHeaderRowDef="cabeceraErrores"></tr>
+                        <tr mat-row *matRowDef="let row; let index = index; columns: cabeceraErrores;" [style]="(findIndexReporte(index))
+                                ? 'background-color: #b5b5b5; font-weight: 500;'
+                                : 'background-color: white;  font-weight: 100;'"
+                          (click)="seleccionarReporte(row, index)"></tr>
+                      </table>
+                    </div>
+                    <mat-paginator #paginator4 [showFirstLastButtons]="true" [length]="length4"
+                      [pageSizeOptions]="[5, 10, 25, 50, 75, 100]" (page)="changeDetailsTablePage(false)"></mat-paginator>
+                  </div>
+                </div>
+                <div *ngIf="loading" fxLayout="column" fxLayoutAlign="center center" class="user-spinner">
+                  <mat-spinner color="accent"></mat-spinner>
+                </div>
+              </div>
+            </mat-card>
+          </div>
+        </div>
+      </form>
+    </mat-drawer-content>
+  </mat-drawer-container>

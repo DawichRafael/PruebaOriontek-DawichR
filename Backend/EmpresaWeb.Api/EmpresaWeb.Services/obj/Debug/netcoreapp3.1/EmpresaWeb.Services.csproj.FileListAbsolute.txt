@@ -1,0 +1,14 @@
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Services\bin\Debug\netcoreapp3.1\EmpresaWeb.Services.deps.json
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Services\bin\Debug\netcoreapp3.1\EmpresaWeb.Services.dll
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Services\bin\Debug\netcoreapp3.1\EmpresaWeb.Services.pdb
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Services\bin\Debug\netcoreapp3.1\EmpresaWeb.Data.dll
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Services\bin\Debug\netcoreapp3.1\EmpresaWeb.Entity.dll
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Services\bin\Debug\netcoreapp3.1\EmpresaWeb.Data.pdb
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Services\bin\Debug\netcoreapp3.1\EmpresaWeb.Entity.pdb
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Services\obj\Debug\netcoreapp3.1\EmpresaWeb.Services.csprojAssemblyReference.cache
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Services\obj\Debug\netcoreapp3.1\EmpresaWeb.Services.AssemblyInfoInputs.cache
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Services\obj\Debug\netcoreapp3.1\EmpresaWeb.Services.AssemblyInfo.cs
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Services\obj\Debug\netcoreapp3.1\EmpresaWeb.Services.csproj.CoreCompileInputs.cache
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Services\obj\Debug\netcoreapp3.1\EmpresaWeb.Services.csproj.CopyComplete
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Services\obj\Debug\netcoreapp3.1\EmpresaWeb.Services.dll
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Services\obj\Debug\netcoreapp3.1\EmpresaWeb.Services.pdb

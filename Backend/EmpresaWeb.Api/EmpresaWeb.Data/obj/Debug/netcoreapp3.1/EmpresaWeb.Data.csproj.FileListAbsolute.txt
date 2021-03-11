@@ -1,0 +1,12 @@
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Data\bin\Debug\netcoreapp3.1\EmpresaWeb.Data.deps.json
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Data\bin\Debug\netcoreapp3.1\EmpresaWeb.Data.dll
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Data\bin\Debug\netcoreapp3.1\EmpresaWeb.Data.pdb
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Data\bin\Debug\netcoreapp3.1\EmpresaWeb.Entity.dll
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Data\bin\Debug\netcoreapp3.1\EmpresaWeb.Entity.pdb
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Data\obj\Debug\netcoreapp3.1\EmpresaWeb.Data.csprojAssemblyReference.cache
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Data\obj\Debug\netcoreapp3.1\EmpresaWeb.Data.AssemblyInfoInputs.cache
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Data\obj\Debug\netcoreapp3.1\EmpresaWeb.Data.AssemblyInfo.cs
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Data\obj\Debug\netcoreapp3.1\EmpresaWeb.Data.csproj.CoreCompileInputs.cache
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Data\obj\Debug\netcoreapp3.1\EmpresaWeb.Data.csproj.CopyComplete
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Data\obj\Debug\netcoreapp3.1\EmpresaWeb.Data.dll
+C:\Users\Dawich-Pc\Desktop\Prueba Tecnica Oriontek\PruebaOriontek-DawichR\Backend\EmpresaWeb.Api\EmpresaWeb.Data\obj\Debug\netcoreapp3.1\EmpresaWeb.Data.pdb

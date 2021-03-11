@@ -53,7 +53,7 @@ export class ClientesService {
 
 
   eliminarDireccion(idDireccion: Number): Promise<any> {
-    return this.http.post(`${environment.api}/apiOperation/EliminarDireccion`, idDireccion).toPromise();
+    return this.http.post(`${environment.api}/api/Operation/EliminarDireccion?idDireccion=${idDireccion}`, idDireccion).toPromise();
   }
 
 }

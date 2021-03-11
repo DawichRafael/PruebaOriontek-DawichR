@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ClientesService } from '@app/clientes/clientes.services';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'; 
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -37,6 +37,7 @@ export class ClientesComponent implements OnInit {
     'Empresa'
   ];
   public displayedColumns2 = [
+    'accion',
     'IdDireccion',
     'Direccion1',
     'Direccion2',
@@ -53,32 +54,32 @@ export class ClientesComponent implements OnInit {
   @ViewChild('search', { static: false }) search: MatInput;
 
   constructor(private clienteService: ClientesService,
-              private formBuilder: FormBuilder, 
-              private toastr: ToastrService) {
+    private formBuilder: FormBuilder,
+    private toastr: ToastrService) {
 
-                this.clientForm = this.formBuilder.group({
-                  idCliente: [''],
-                  nombre: [{ value: '', disabled: false }],
-                  apellido: [{ value: '', disabled: false }],
-                  cedula: [{ value: '', disabled: false }],
-                  telefono: [{ value: '', disabled: false }],
-                  nacionalidad: [{ value: '', disabled: false }],
-                  estadoCivil: [{ value: '', disabled: false }],
-                  idEmpresa: [{ value: 1, disabled: false }],
-                  direccion: this.formBuilder.group({
-                  IdDireccion:  [''],
-                  direccionPrincipal:  [{ value: '', disabled: false }],
-                  direccionSecundaria:  [{ value: '', disabled: false }],
-                  ciudad: [{ value: '', disabled: false }],
-                  provincia:   [{ value: '', disabled: false }],
-                  numero: [{ value: '', disabled: false }],
-                  codigoPostal: [{ value: '', disabled: false }],
-                  idCliente: [{ value: '', disabled: false }]
-                  })
-                });
-               }
+    this.clientForm = this.formBuilder.group({
+      idCliente: [''],
+      nombre: [{ value: '', disabled: false }],
+      apellido: [{ value: '', disabled: false }],
+      cedula: [{ value: '', disabled: false }],
+      telefono: [{ value: '', disabled: false }],
+      nacionalidad: [{ value: '', disabled: false }],
+      estadoCivil: [{ value: '', disabled: false }],
+      idEmpresa: [{ value: 1, disabled: false }],
+      direccion: this.formBuilder.group({
+        IdDireccion: [''],
+        direccionPrincipal: [{ value: '', disabled: false }],
+        direccionSecundaria: [{ value: '', disabled: false }],
+        ciudad: [{ value: '', disabled: false }],
+        provincia: [{ value: '', disabled: false }],
+        numero: [{ value: '', disabled: false }],
+        codigoPostal: [{ value: '', disabled: false }],
+        idCliente: [{ value: '', disabled: false }]
+      })
+    });
+  }
 
-   ngOnInit() {
+  ngOnInit() {
 
     this.toastr.success('Bienvenido a Control de empleados')
   }
@@ -92,27 +93,27 @@ export class ClientesComponent implements OnInit {
 
   }
 
-  async CrearActualizarCliente(){
+  async CrearActualizarCliente() {
     let msg = '';
-    if(this.clientForm.controls.idCliente.value === '')
+    if (this.clientForm.controls.idCliente.value === '')
       msg = 'Ha insertado un cliente!'
     else
       msg = 'Ha actualizado este cliente!'
 
     try {
-       await this.clienteService.InsertarActualizarCliente(this.clientForm.value);
-  
+      await this.clienteService.InsertarActualizarCliente(this.clientForm.value);
+
       this.toastr.success(msg);
       this.clientForm.reset();
     } catch (err) {
       this.toastr.error(err.error.Message)
     }
   }
-  async buscarDirecciones(row){
- 
+  async buscarDirecciones(row) {
+
     let direcciones = await this.clienteService.obtenerDireccion(row.idCliente);
     this.clienteSeleccionado = await this.clienteService.obtenerCliente(row.idCliente);
-    
+
     this.toastr.info('Puedes editar el cliente en la siguiente tab')
     this.llenarClienteTab(this.clienteSeleccionado);
 
@@ -122,20 +123,20 @@ export class ClientesComponent implements OnInit {
     this.length2 = direcciones.length;
   }
 
-  llenarClienteTab(clienteSeleccionado : any){
- 
-    if(clienteSeleccionado !== null){
-    this.clientForm.controls.idCliente.setValue(clienteSeleccionado[0].idCliente);
-    this.clientForm.controls.nombre.setValue(clienteSeleccionado[0].nombre);
-    this.clientForm.controls.apellido.setValue(clienteSeleccionado[0].apellido);
-    this.clientForm.controls.cedula.setValue(clienteSeleccionado[0].cedula);
-    this.clientForm.controls.telefono.setValue(clienteSeleccionado[0].telefono);
-    this.clientForm.controls.nacionalidad.setValue(clienteSeleccionado[0].nacionalidad);
-    this.clientForm.controls.estadoCivil.setValue(clienteSeleccionado[0].estadoCivil);
-    this.flagCrearDireccion = true;
+  llenarClienteTab(clienteSeleccionado: any) {
+
+    if (clienteSeleccionado !== null) {
+      this.clientForm.controls.idCliente.setValue(clienteSeleccionado[0].idCliente);
+      this.clientForm.controls.nombre.setValue(clienteSeleccionado[0].nombre);
+      this.clientForm.controls.apellido.setValue(clienteSeleccionado[0].apellido);
+      this.clientForm.controls.cedula.setValue(clienteSeleccionado[0].cedula);
+      this.clientForm.controls.telefono.setValue(clienteSeleccionado[0].telefono);
+      this.clientForm.controls.nacionalidad.setValue(clienteSeleccionado[0].nacionalidad);
+      this.clientForm.controls.estadoCivil.setValue(clienteSeleccionado[0].estadoCivil);
+      this.flagCrearDireccion = true;
+    }
   }
-  }
-  Limpiar(){
+  Limpiar() {
     this.dataSource = new MatTableDataSource([]);
     this.dataSource.paginator = this.paginator
     this.dataSource.sort = this.sort;
@@ -149,28 +150,40 @@ export class ClientesComponent implements OnInit {
     this.flagCrearDireccion = false;
   }
 
-  async EliminarCliente(row){
- 
- 
+  async EliminarCliente(row) {
+
+
     try {
       await this.clienteService.eliminarCliente(row.idCliente);
- 
+
       this.toastr.success('Ha eliminado este cliente')
       this.clienteService.obtenerCliente(null);
-   } catch (err) {
-     this.toastr.error(err.error)
-   }
+    } catch (err) {
+      this.toastr.error(err.error)
+    }
   }
-  async CrearActualizarDireccion(){
+
+  async EliminarDireccion(row) {
+  
+    try {
+      await this.clienteService.eliminarDireccion(row.idDireccion);
+
+      this.toastr.success('Ha eliminado esta dirección')
+      this.clienteService.obtenerDireccion(row.idCliente);
+    } catch (err) {
+      this.toastr.error(err.error)
+    }
+  }
+  async CrearActualizarDireccion() {
     let msg = '';
-    if(this.clientForm.controls.direccion.get('IdDireccion').value === '')
+    if (this.clientForm.controls.direccion.get('IdDireccion').value === '')
       msg = 'Ha insertado una dirección !'
     else
       msg = 'Ha actualizado esta dirección!'
 
     try {
-       await this.clienteService.InsertarActualizarDireccion(this.clientForm.value);
-  
+      await this.clienteService.InsertarActualizarDireccion(this.clientForm.value);
+
       this.toastr.success(msg);
       this.clientForm.controls.direccion.reset();
     } catch (err) {

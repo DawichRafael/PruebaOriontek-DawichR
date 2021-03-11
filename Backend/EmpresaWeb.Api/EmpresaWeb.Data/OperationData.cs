@@ -56,7 +56,7 @@ namespace EmpresaWeb.Data
                 }
                 else
                 {
-                    direcciones = await _databaseConnection.DIRECCION.Where(x => x.IdDireccion == id).ToListAsync();
+                    direcciones = await _databaseConnection.DIRECCION.Where(x => x.IdCliente == id).ToListAsync();
                 }
             }
             catch (Exception ex)

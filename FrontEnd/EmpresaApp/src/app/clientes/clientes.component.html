@@ -119,7 +119,17 @@
                       <div fxLayout="row wrap" class="p-3">
                         <table mat-table [dataSource]="dataSource2" matSort matSortActive="created" matSortDisableClear
                           matSortDirection="desc">
-
+                          <ng-container matColumnDef="accion">
+                            <th mat-header-cell *matHeaderCellDef></th>
+                            <td mat-cell *matCellDef="let element; let index = index;">
+      
+                              <button mat-mini-fab class="mr-1" #tooltip="matTooltip" matTooltip="Eliminar"
+                                      style="width: 30px; height: 30px;" matTooltipPosition="above"
+                                      (click)="EliminarDireccion(element)" color="warn"  >
+                                <mat-icon>delete</mat-icon>
+                              </button>
+                            </td>
+                          </ng-container>
                           <ng-container matColumnDef="IdDireccion">
                             <th mat-header-cell style="width: 10% !important;" *matHeaderCellDef mat-sort-header>ID
                               Dirección</th>
